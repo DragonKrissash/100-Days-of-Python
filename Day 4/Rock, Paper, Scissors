@@ -1,0 +1,50 @@
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+
+#Write your code below this line 👇
+
+choices=[rock,paper,scissors]
+import random as rd
+user=int(input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n"))
+comp=rd.randint(0,2)
+if user==comp:
+  print("It's a TIE!\nYour choice:\n"+choices[user]+"\nComputer's choice:\n"+choices[comp])
+elif user==0:
+  if comp==1:
+    print("You WIN!\nYour choice:\n"+choices[user]+"\nComputer's choice:\n"+choices[comp])
+  else:
+    print("You LOSE!\nYour choice:\n"+choices[user]+"\nComputer's choice:\n"+choices[comp])
+elif user==1:
+  if comp==0:
+    print("You WIN!\nYour choice:\n"+choices[user]+"\nComputer's choice:\n"+choices[comp])
+  else:
+    print("You LOSE!\nYour choice:\n"+choices[user]+"\nComputer's choice:\n"+choices[comp])
+else:
+  if comp==0:
+    print("You LOSE!\nYour choice:\n"+choices[user]+"\nComputer's choice:\n"+choices[comp])
+  else:
+    print("You WIN!\nYour choice:\n"+choices[user]+"\nComputer's choice:\n"+choices[comp])
