@@ -1,7 +1,6 @@
 from art import logo,vs
 from game_data import data
 import random as rd
-print (logo)
 gameEnded=False
 answered=False
 score=0
