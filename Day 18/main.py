@@ -16,12 +16,12 @@ dir=[0,90,180,270]
 # tim.sety(200)
 # tim.pendown()
 turtle.colormode(255)
-# for i in shapes:
-#     tim.pencolor(colors[shapes.index(i)%3])
-#     for j in range(i):
-#         tim.pensize(5)
-#         tim.forward(100)
-#         tim.right(360//i)
+for i in shapes:
+    tim.pencolor(colors[shapes.index(i)%3])
+    for j in range(i):
+        tim.pensize(5)
+        tim.forward(100)
+        tim.right(360//i)
 # for i in range(50):
 #     tim.speed(10)
 #     tim.pensize(15)
@@ -29,14 +29,14 @@ turtle.colormode(255)
 #     tim.setheading(rd.choice(dir))
 #     tim.forward(30)
 
-def drawSpiro():
-    for i in range(40):
-        tim.pencolor(rd.randint(0, 255), rd.randint(0, 255), rd.randint(0, 255))
-        tim.speed(30)
-        tim.circle(100)
-        tim.left(10)
-for i in range(4):
-    drawSpiro()
+# def drawSpiro():
+#     for i in range(40):
+#         tim.pencolor(rd.randint(0, 255), rd.randint(0, 255), rd.randint(0, 255))
+#         tim.speed(30)
+#         tim.circle(100)
+#         tim.left(10)
+# for i in range(4):
+#     drawSpiro()
 
 
 
