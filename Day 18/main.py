@@ -7,14 +7,14 @@ tim.color("red")
 # for i in range(0,4):
 #     tim.forward(100)
 #     tim.left(90)
-shapes=[4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+shapes=[4,5,6,7,8,9,10,11,12]
 colors=['red','blue','green']
 moves=[20,40,50,30,25,35,50,60,40]
 dir=[0,90,180,270]
-# tim.penup()
-# tim.setx(-200)
-# tim.sety(200)
-# tim.pendown()
+tim.penup()
+tim.setx(-150)
+tim.sety(150)
+tim.pendown()
 turtle.colormode(255)
 for i in shapes:
     tim.pencolor(colors[shapes.index(i)%3])
