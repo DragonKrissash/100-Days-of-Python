@@ -5,9 +5,9 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25
-SHORT_BREAK_MIN = 5
-LONG_BREAK_MIN = 20
+WORK_MIN = 2
+SHORT_BREAK_MIN = 1
+LONG_BREAK_MIN = 3
 reps=0
 time=None
 checkmark=''
@@ -20,6 +20,7 @@ def reset_timer():
     timer.config(text='Timer')
     global checkmark
     checkmark=''
+    check.config(text='')
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 def start_timer():
@@ -49,7 +50,7 @@ def count_down(count):
     canvas.itemconfig(timer_text,text=f'{min}:{sec}')
     if count>0:
         global time
-        time=window.after(1000,count_down,count-1)
+        time=window.after(100,count_down,count-1)
     else:
         start_timer()
         global checkmark
