@@ -1,13 +1,31 @@
 ##################### Extra Hard Starting Project ######################
+import pandas as pd
+import smtplib
+import random as rd
 
-# 1. Update the birthdays.csv
+df=pd.read_csv('Names.csv')
 
-# 2. Check if today matches a birthday in the birthdays.csv
+my='dragonkrishoredbzgt@gmail.com'
 
-# 3. If step 2 is true, pick a random letter from letter templates and replace the [NAME] with the person's actual name from birthdays.csv
+with open('./Birthday Wisher (Day 32) start/quotes.txt') as file:
+    quotes=file.read();
+    quotes=quotes.split('\n')
 
-# 4. Send the letter generated in step 3 to that person's email address.
+with open('./letter_templates/letter_1.txt') as file:
+    letter=file.read()
 
+# with smtplib.SMTP('smtp.gmail.com') as connection:
+#     password = "yoro vjbn aiva zqew"
+#     connection.starttls()
+#     connection.login(user=my, password=password)
 
-
-
+    # for ind,row in df.iterrows():
+    #     name=row['Name']
+    #     email=row['Email']
+    #     letter = letter.replace('[NAME]', name)
+    #     letter = letter.replace('DATA', quotes[rd.randint(0,len(quotes)-1)])
+    #     connection.sendmail(from_addr=my,
+    #                         to_addrs=email,
+    #                         msg=f'Subject:POWERED PACKED MOTIVATION!\n\n{letter}')
+for ind,row in df.iterrows():
+    print(row['Name'],row['Email'])

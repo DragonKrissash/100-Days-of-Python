@@ -2,4 +2,7 @@ Hey YOU! [NAME],
 
 DATA
 
-Kishore
+From Kishore
+
+(This is a small project to send automated email using python!)
+Hope you like it!
