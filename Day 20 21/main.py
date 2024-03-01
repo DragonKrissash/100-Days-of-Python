@@ -6,7 +6,7 @@ import time
 screen=Screen()
 food=Food()
 scoreboard=ScoreBoard()
-screen.setup(600,600)
+screen.setup(1280,720)
 screen.bgcolor('black')
 screen.title('My Snake Game')
 screen.tracer (0)
@@ -27,7 +27,7 @@ while game_is_on:
         food.moveFood()
         snake.extend()
         scoreboard.updateScore()
-    if snake.head.xcor()>280 or snake.head.ycor()>280 or snake.head.xcor()<-280 or snake.head.ycor()<-280:
+    if snake.head.xcor()>630 or snake.head.ycor()>340 or snake.head.xcor()<-630 or snake.head.ycor()<-340:
         scoreboard.gameOver()
         game_is_on=False
     for segment in snake.segments[1:]:
@@ -35,6 +35,9 @@ while game_is_on:
             scoreboard.gameOver()
             game_is_on=False
 
+
+
+ 
 
 
 

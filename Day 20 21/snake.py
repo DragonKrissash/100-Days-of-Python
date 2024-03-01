@@ -30,6 +30,7 @@ class Snake:
 
     def extend(self):
         self.addSegment(self.segments[-1].position())
+        self.addSegment(self.segments[-1].position())
 
     def up(self):
         if self.head.heading() == 0 or self.segments[0].heading() == 180:

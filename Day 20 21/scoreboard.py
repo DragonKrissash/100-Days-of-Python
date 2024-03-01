@@ -8,7 +8,7 @@ class ScoreBoard(Turtle):
         self.hideturtle()
         self.penup()
         self.goto(0,250)
-        self.write('Score: ' + str(self.score), False, align='center', font=('Arial', 24, 'normal'))
+        self.write(f'Score: {str(self.score)}', False, align='center', font=('Arial', 24, 'normal'))
 
     def updateScore(self):
         self.score+=1
