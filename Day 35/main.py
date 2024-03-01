@@ -30,7 +30,7 @@ if will_rain:
     message = client.messages \
         .create(
         body=msg,
-        from_='+18084259894',
-        to='+917075415869'
+        from_='NUM1',
+        to='NUM2'
     )
 print(message.status)
