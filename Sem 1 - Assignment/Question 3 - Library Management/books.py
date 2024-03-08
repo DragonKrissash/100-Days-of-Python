@@ -1,36 +1,37 @@
 import pandas as pd
-from books_data import dataset
+from books_data import books_dataset
 class Books():
 
     def showBooks(self):
-            df = pd.DataFrame(dataset)
+            df = pd.DataFrame(books_dataset)
             df.columns = ['Author', 'Title']
-            df['ID'] = [i for i in range(1, len(dataset)+1)]
+            df['ID'] = [i for i in range(1, len(books_dataset)+1)]
             order = ['ID', 'Author', 'Title']
             df = df[order]
             print(df)
 
 
     def showAvailability(self,title):
-        if title.lower() in [i['title'].lower() for i in dataset]:
-            return True
+        if title.lower() in [i['title'].lower() for i in books_dataset]:
+            print('Yes the book is available to borrow!')
         else:
-            return False
+            print('Sorry the book is not available!')
 
     def addBook(self,author,title):
         data={
             'author':author,
             'title':title
         }
-        dataset.append(data)
+        books_dataset.append(data)
+        print('The book has been successfully added!\nThank you!')
 
     def removeBook(self,author,title):
         data={
             'author':author,
             'title':title
         }
-        dataset.pop(dataset.index(data))
-
+        books_dataset.pop(books_dataset.index(data))
+        print('The book has been successfully removed from library! ')
 
 # Books().addBook('Me','wow')
 # Books().showBooks()
