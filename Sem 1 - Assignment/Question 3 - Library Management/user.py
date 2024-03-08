@@ -17,23 +17,29 @@ class User():
         for user in user_dataset:
             if user['Name']==user_name:
                 userFound=True
-                day=datetime.now().day
-                month=datetime.now().month
-                year=datetime.now().year
-                borrow_date=datetime(year,month,day)
-                due_date=borrow_date+timedelta(days=14)
-                borrow_date=borrow_date.strftime("%d-%m-%Y")
-                due_date=due_date.strftime("%d-%m-%Y")
-                user['Books_Borrowed']+=1
-                book_data={
-                        'title':title,
-                        'author':author,
-                        'borrow_date':borrow_date,
-                        'due_date':due_date
-                }
-                user["Books"].append(book_data)
-                print('Here is your book!')
-                print(f'Your borrow date is: {borrow_date} \nDue date is: {due_date}')
+                bookFound=False
+                for book in books_dataset:
+                    if book['title']==title:
+                        bookFound=True
+                        day=datetime.now().day
+                        month=datetime.now().month
+                        year=datetime.now().year
+                        borrow_date=datetime(year,month,day)
+                        due_date=borrow_date+timedelta(days=14)
+                        borrow_date=borrow_date.strftime("%d-%m-%Y")
+                        due_date=due_date.strftime("%d-%m-%Y")
+                        user['Books_Borrowed']+=1
+                        book_data={
+                                'title':title,
+                                'author':author,
+                                'borrow_date':borrow_date,
+                                'due_date':due_date
+                        }
+                        user["Books"].append(book_data)
+                        print('Here is your book!')
+                        print(f'Your borrow date is: {borrow_date} \nDue date is: {due_date}')
+                if not bookFound:
+                    print('You have entered the wrong book name!')
         if not userFound:
             print('Sorry you are not there in our database!\nPlease register yourself.')
     def bookReturned(self,user_name,title):
