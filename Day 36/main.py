@@ -2,8 +2,8 @@ import requests
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla"
-STOCK_API_KEY='0NKHWVPBQR22BXAZ'
-NEWS_API_KEY='4f0c39f108774e73a89816b11117d62e'
+STOCK_API_KEY='stock_api_key'
+NEWS_API_KEY='news_api_key'
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 
