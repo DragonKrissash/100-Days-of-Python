@@ -1,9 +1,9 @@
 import requests
 
 STOCK = "TSLA"
-COMPANY_NAME = "Tesla Inc"
-API_KEY='0NKHWVPBQR22BXAZ'
-
+COMPANY_NAME = "Tesla"
+STOCK_API_KEY='0NKHWVPBQR22BXAZ'
+NEWS_API_KEY='4f0c39f108774e73a89816b11117d62e'
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 
@@ -28,15 +28,27 @@ Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and 
 
 from requests import request
 from datetime import datetime,timedelta
-EndPoint='https://www.alphavantage.co/query'
+stockEndPoint='https://www.alphavantage.co/query'
 fnc='TIME_SERIES_DAILY'
 stock_params={
 'function':fnc,
     'symbol':STOCK,
     'datatype':'json',
-    'apikey':API_KEY
+    'apikey':STOCK_API_KEY
 }
+response=requests.get(url=stockEndPoint,params=stock_params)
+stock_data=response.json()['Time Series (Daily)']
+newsEndPoint='https://newsapi.org/v2/top-headlines'
+news_params={
+    'apiKey':NEWS_API_KEY,
+    'country':'us',
+    'category':'business',
+    'q':'Tesla'
 
+}
+resp=requests.get(url=newsEndPoint,params=news_params)
+news_data=resp.json()
+news=news_data['articles'][2]
 def getStrDate(curr_date):
     day=curr_date.day
     month=curr_date.month
@@ -47,14 +59,35 @@ def getStrDate(curr_date):
         day=f'0{day}'
     return f'{year}-{month}-{day}'
 
-def getHighPrice(date,data):
-    high=float(data[date]['2. high'])
-    low=float(data[date]['3. low'])
-    print(high,low)
+def getHigh(date):
+    high=float(stock_data[date]['2. high'])
+    return high
 
-response=requests.get(url=EndPoint,params=stock_params)
-json_data=response.json()['Time Series (Daily)']
-curr_date=datetime.now()
-date1=curr_date-timedelta(days=1)
-date2=curr_date-timedelta(days=2)
-getHighPrice(getStrDate(date1),json_data)
+def getStockHigh(curr_date):
+    if curr_date.weekday()==0:
+        date1 = curr_date - timedelta(days=3)
+        date2 = curr_date - timedelta(days=4)
+    elif curr_date.weekday()==6:
+        date1 = curr_date - timedelta(days=2)
+        date2 = curr_date - timedelta(days=3)
+    elif curr_date.weekday()==5:
+        date1 = curr_date - timedelta(days=1)
+        date2 = curr_date - timedelta(days=2)
+    elif curr_date.weekday()==1:
+        date1 = curr_date - timedelta(days=1)
+        date2 = curr_date - timedelta(days=4)
+    else:
+        date1 = curr_date - timedelta(days=1)
+        date2 = curr_date - timedelta(days=2)
+
+    date1_price=getHigh(getStrDate(date1))
+    date2_price=getHigh(getStrDate(date2))
+    return date1_price-date2_price
+
+stock_dif=getStockHigh(datetime.now())
+if stock_dif < 0:
+    print(f"It's a bearish attack! {stock_dif}")
+else:
+    print(f"It's a bullish attack! {stock_dif}")
+print(f"Title: {news['title']}\n"
+          f"Content: {news['content']}")
